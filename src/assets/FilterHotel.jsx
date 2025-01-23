@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 import axios from 'axios';
-import HotelGrid from './HotelGrid'; // Assuming this is where you are displaying the hotels
+import HotelGrid from './HotelGrid'; 
 import { Typography, Grid } from '@mui/material';
 
 const ITEM_HEIGHT = 48;
@@ -44,7 +44,7 @@ export default function FilterHotel() {
   const [hotelName, setHotelName] = useState('');
   const [hotelCode, setHotelCode] = useState('');
   const [loading, setLoading] = useState(false);
-  const [hotels, setHotels] = useState([]); // State to store hotels data
+  const [hotels, setHotels] = useState([]); 
 
   const handleProvinceChange = (event) => {
     setProvinceName(event.target.value);
@@ -74,7 +74,7 @@ export default function FilterHotel() {
 
       const response = await axios.get('http://localhost:8080/api/v1/hotel/search', { params });
       console.log(response.data);
-      setHotels(response.data); // Set the response data to hotels
+      setHotels(response.data); 
     } catch (error) {
       console.error('Error fetching hotels:', error);
     } finally {
