@@ -80,7 +80,7 @@ const BookingForm = ({ roomId, userId, pricePerDay, isPopoverOpen, handlePopover
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 2, // Adjust the gap between fields
+          gap: 2, 
         }}
       >
         <TextField
