@@ -39,7 +39,7 @@ function Room() {
   const [popoverAnchor, setPopoverAnchor] = React.useState(null); // State for popover
   const [selectedRoom, setSelectedRoom] = React.useState(null); // State for selected room details
 
-  // Fetch initial room data
+  
   React.useEffect(() => {
     const fetchRoomData = async () => {
       try {
@@ -51,7 +51,7 @@ function Room() {
           bed: room.bed,
           status: room.bookingStatus ? 'Booked' : 'Available',
           id: room.id,
-          price: room.price, // Assuming price is part of the room data
+          price: room.price, 
         }));
         setRows(roomData);
       } catch (error) {
@@ -71,7 +71,7 @@ function Room() {
     setPage(0);
   };
 
-  // Handle Check Availability
+  
   const handleCheckAvailability = async () => {
     if (!dateRange[0] || !dateRange[1]) {
       alert('Please select a valid date range!');
@@ -91,7 +91,7 @@ function Room() {
         bed: room.bed,
         status: room.bookingStatus ? 'Booked' : 'Available',
         id: room.id,
-        price: room.price, // Assuming price is part of the room data
+        price: room.price, 
       }));
       setRows(availableRooms);
     } catch (error) {
@@ -117,7 +117,6 @@ function Room() {
         {name ? `Welcome to ${name}` : 'Room Details'}
       </Typography>
 
-      {/* Date Range Picker Section */}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateRangePicker
@@ -169,7 +168,7 @@ function Room() {
                             style={{ backgroundColor: 'var(--green)' }}
                             variant="contained"
                             color="primary"
-                            onClick={(event) => handlePopoverOpen(event, row)} // Pass the row data
+                            onClick={(event) => handlePopoverOpen(event, row)} 
                           >
                             Book Now
                           </Button>
@@ -198,17 +197,17 @@ function Room() {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
 
-      {/* Popover */}
+     
       <Popover
         open={isPopoverOpen}
-        anchorReference="none" // Disable default positioning based on anchorEl
+        anchorReference="none" 
         onClose={handlePopoverClose}
         PaperProps={{
           style: {
             position: 'absolute',
             top: '50%',
             left: '50%',
-            transform: 'translate(-50%, -50%)', // Center horizontally and vertically
+            transform: 'translate(-50%, -50%)', 
             padding: '20px',
             maxWidth: '400px',
             width: '100%',
