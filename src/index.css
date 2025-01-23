@@ -1,0 +1,38 @@
+:root {
+    --background-color: #FFFFFF;
+    --background-color2: #ffffffce;
+    --border-color: #bcbcbc;
+    --shadow-color: #42494b99;
+    --text-primary: #363434;
+    --text-secondary: #4f4f4f;
+    --orange: rgb(230, 191, 47);
+    --green: #20b6b0;
+  
+    --font-size-large: 5rem;
+    --font-size-heading: 3rem;
+    --font-size-subheading: 2rem;
+    --font-size-normal: 1rem;
+    --font-size-small: 0.5rem;
+  
+    --font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-family2:cursive;
+  }
+
+  .formCss{
+    width: 25%;
+    display: block;
+    text-align: center;
+    padding: 30px;
+    border-radius: 2%;
+    margin-bottom: 2px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /*box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;*/
+  }
+
+  .error{
+    color: rgb(203, 37, 37);
+    background-color: rgba(255, 0, 0, 0.067);
+    padding: 2px;
+    border-radius: 3px;
+    margin-top: 0;
+  }
