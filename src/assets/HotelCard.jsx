@@ -23,7 +23,7 @@ export default function HotelCard({ hotel }) {
       <CardMedia
         component="img"
         height="140"
-        image={imagePath}
+        image="https://cdn.prod.website-files.com/64d618bb0ccc37b64e1d6053/6718b6820112355ec0cc585c_BHC_facade.jpg"
         alt={`${name} image`}
       />
       <CardContent>

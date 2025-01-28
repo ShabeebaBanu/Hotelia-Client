@@ -12,7 +12,7 @@ function Signup() {
           justifyContent: "center",
           alignItems: "center",
           height: "90vh", 
-          
+          marginTop: "3%"
         }}
       >
          <SignupForm/>

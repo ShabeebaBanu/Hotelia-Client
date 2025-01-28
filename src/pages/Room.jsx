@@ -26,6 +26,7 @@ const columns = [
   { id: 'type', label: 'Type', minWidth: 100 },
   { id: 'maxMembers', label: 'Max Members', minWidth: 170, align: 'right' },
   { id: 'bed', label: 'Beds', minWidth: 170, align: 'right' },
+  { id: 'price', label: 'Rent(24 Hours)', minWidth: 170 , align:'right'},
   { id: 'status', label: 'Status', minWidth: 170, align: 'right' },
   { id: 'action', label: 'Action', minWidth: 170, align: 'center' },
 ];
@@ -51,7 +52,7 @@ function Room() {
           bed: room.bed,
           status: room.bookingStatus ? 'Booked' : 'Available',
           id: room.id,
-          price: room.price, // Assuming price is part of the room data
+          price: room.price, 
         }));
         setRows(roomData);
       } catch (error) {
@@ -71,7 +72,7 @@ function Room() {
     setPage(0);
   };
 
-  // Handle Check Availability
+  
   const handleCheckAvailability = async () => {
     if (!dateRange[0] || !dateRange[1]) {
       alert('Please select a valid date range!');
@@ -81,7 +82,7 @@ function Room() {
     const checkIn = dateRange[0].format('YYYY-MM-DD');
     const checkOut = dateRange[1].format('YYYY-MM-DD');
     try {
-      const response = await axios.get(`http://localhost:8080/api/v1/room/available`, {
+      const response = await axios.get(`http://localhost:8080/api/v1/room/available/${id}`, {
         params: { checkIn, checkOut },
       });
       const availableRooms = response.data.map((room) => ({
@@ -91,8 +92,9 @@ function Room() {
         bed: room.bed,
         status: room.bookingStatus ? 'Booked' : 'Available',
         id: room.id,
-        price: room.price, // Assuming price is part of the room data
+        price: room.price, 
       }));
+      console.log(availableRooms);
       setRows(availableRooms);
     } catch (error) {
       console.error('Error checking availability:', error);
@@ -100,24 +102,30 @@ function Room() {
   };
 
   const handlePopoverOpen = (event, room) => {
-    setSelectedRoom(room); // Set the selected room details
+    setSelectedRoom(room); 
     setPopoverAnchor(event.currentTarget);
   };
 
   const handlePopoverClose = () => {
     setPopoverAnchor(null);
-    setSelectedRoom(null); // Clear selected room when closing
+    setSelectedRoom(null); 
   };
 
   const isPopoverOpen = Boolean(popoverAnchor);
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '5%' }}>
+    <Paper sx={{ width: '90%',
+      overflow: 'hidden',
+      margin: '1% auto', 
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '100vh'}}>
       <Typography variant="h4" align="center" style={{ marginBottom: '20px', color: 'var(--text-primary)' }}>
         {name ? `Welcome to ${name}` : 'Room Details'}
       </Typography>
 
-      {/* Date Range Picker Section */}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateRangePicker
@@ -169,7 +177,7 @@ function Room() {
                             style={{ backgroundColor: 'var(--green)' }}
                             variant="contained"
                             color="primary"
-                            onClick={(event) => handlePopoverOpen(event, row)} // Pass the row data
+                            onClick={(event) => handlePopoverOpen(event, row)} 
                           >
                             Book Now
                           </Button>
@@ -198,17 +206,17 @@ function Room() {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
 
-      {/* Popover */}
+      
       <Popover
         open={isPopoverOpen}
-        anchorReference="none" // Disable default positioning based on anchorEl
+        anchorReference="none" 
         onClose={handlePopoverClose}
         PaperProps={{
           style: {
             position: 'absolute',
             top: '50%',
             left: '50%',
-            transform: 'translate(-50%, -50%)', // Center horizontally and vertically
+            transform: 'translate(-50%, -50%)', 
             padding: '20px',
             maxWidth: '400px',
             width: '100%',
@@ -218,7 +226,7 @@ function Room() {
       >
         <Grid sx={{ p: 2 }}>
           {selectedRoom && (
-            <BookingForm roomId={selectedRoom.id} pricePerDay={selectedRoom.price} />
+            <BookingForm roomId={selectedRoom.id} pricePerDay={selectedRoom.price} hotelId={id} />
           )}
         </Grid>
       </Popover>

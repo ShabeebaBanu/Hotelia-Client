@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
 import { validateEmail, validatePassword } from './Validation';
+import { use } from 'react';
 
 function SigninForm() {
   const navigate = useNavigate();
@@ -39,10 +40,11 @@ function SigninForm() {
     });
 
     if (response) {
-      console.log(response);
       const token = response.data.token; 
-      console.log("Token:", token);
+      const userId = response.data.userId;
       sessionStorage.setItem('token', token); 
+      sessionStorage.setItem('userId', userId);
+      
       navigate('/profile'); 
     }
   } catch (error) {

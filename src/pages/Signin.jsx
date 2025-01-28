@@ -12,7 +12,7 @@ function Signin() {
           justifyContent: "center",
           alignItems: "center",
           height: "70vh", 
-          
+          marginTop: "10%"
         }}
       >
          <SigninForm/>

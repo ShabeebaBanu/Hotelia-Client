@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
-const BookingForm = ({ roomId, userId, pricePerDay, isPopoverOpen, handlePopoverClose }) => {
+const BookingForm = ({ roomId, userId, pricePerDay, isPopoverOpen, handlePopoverClose, hotelId }) => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -35,6 +35,7 @@ const BookingForm = ({ roomId, userId, pricePerDay, isPopoverOpen, handlePopover
 
   const handleBookNow = async () => {
     const token = sessionStorage.getItem('token');
+    const userId = sessionStorage.getItem('userId');
     if(token == null){
         navigate("/signin");
     }
@@ -45,11 +46,11 @@ const BookingForm = ({ roomId, userId, pricePerDay, isPopoverOpen, handlePopover
     }
 
     try {
-      const response = await axios.post(`http://localhost:8080/api/v1/book/${userId}/${roomId}`, {
+      const response = await axios.post(`http://localhost:8080/api/v1/book/${userId}/${hotelId}/${roomId}`, {
         name : name,
         phone : phone,
-        checkInDate: checkInDate.format('YYYY-MM-DD'),
-        checkOutDate: checkOutDate.format('YYYY-MM-DD'),
+        checkIn: checkInDate.format('YYYY-MM-DD'),
+        checkOut: checkOutDate.format('YYYY-MM-DD'),
         rentTotal: totalPrice,
         paymentStatus: "Pending"
       },{
