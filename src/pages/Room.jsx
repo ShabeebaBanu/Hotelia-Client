@@ -40,7 +40,7 @@ function Room() {
   const [popoverAnchor, setPopoverAnchor] = React.useState(null); // State for popover
   const [selectedRoom, setSelectedRoom] = React.useState(null); // State for selected room details
 
-  // Fetch initial room data
+  
   React.useEffect(() => {
     const fetchRoomData = async () => {
       try {
@@ -206,7 +206,11 @@ function Room() {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
 
+<<<<<<< HEAD
       
+=======
+     
+>>>>>>> d7e84b0d014bb14950c9bfacea13934b00ab468e
       <Popover
         open={isPopoverOpen}
         anchorReference="none" 
